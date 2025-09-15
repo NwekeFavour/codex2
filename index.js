@@ -9,11 +9,27 @@ const zapierWebhookUrltwo = process.env.ZAPIER_WEBHOOK_URLTWO;
 
 app.use(express.json());  
 
+const allowedOrigins = [
+  'http://localhost:3000',
+  'https://codex.ng',
+  'https://www.codex.ng'
+];
+
 app.use(cors({
-  origin: process.env.CLIENT_URL || 'http://localhost:3000', // allow dynamic frontend
+  origin: function (origin, callback) {
+    // allow requests with no origin (like mobile apps or curl)
+    if (!origin) return callback(null, true);
+    if (allowedOrigins.includes(origin)) {
+      return callback(null, true);
+    } else {
+      return callback(new Error('Not allowed by CORS'));
+    }
+  },
   methods: ['GET', 'POST'],
   allowedHeaders: ['Content-Type', 'Authorization'],
+  credentials: true
 }));
+
   
   
 app.post('/trigger-zap', async (req, res) => {
