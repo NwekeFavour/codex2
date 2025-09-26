@@ -1,7 +1,7 @@
 require('dotenv').config();
 const express = require("express");
 const cors = require("cors");
-const configDB = require('./config/db');
+const connectDB = require('./config/db');
 const Contact = require('./models/contacts');  // Capitalized model
 const Qcontact = require('./models/Qcontact');
 
@@ -18,7 +18,7 @@ const allowedOrigins = [
   'https://www.codex.ng'
 ];
 
-configDB();
+connectDB();
 
 app.use(cors({
   origin: function (origin, callback) {
