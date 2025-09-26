@@ -18,7 +18,7 @@ const allowedOrigins = [
   'https://www.codex.ng'
 ];
 
-connectDB();
+connectDB();  
 
 app.use(cors({
   origin: function (origin, callback) {
