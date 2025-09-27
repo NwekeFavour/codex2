@@ -41,8 +41,20 @@ exports.registerUser = async (req, res) => {
 // @desc Login user
 exports.loginUser = async (req, res) => {
   try {
-    const { email, password } = req.body
+    const { email, password, captcha } = req.body
 
+    if (!captcha) {
+      return res.status(400).json({ error: "Captcha token is required" })
+    }
+
+    const captchaVerifyURL = `https://www.google.com/recaptcha/api/siteverify?secret=${process.env.RECAPTCHA_SECRET_KEY}&response=${captcha}`
+
+    const captchaRes = await axios.post(captchaVerifyURL)
+
+    if (!captchaRes.data.success) {
+      return res.status(400).json({ error: "Captcha verification failed" })
+    }
+    
     const user = await User.findOne({ email })
     if (!user) return res.status(400).json({ error: "Invalid credentials" })
 
