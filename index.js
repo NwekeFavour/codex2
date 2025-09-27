@@ -71,7 +71,7 @@ app.post("/api/quick-contact", async (req, res) => {
     res.status(500).json({ error: "Server error" });
   }
 });
-
+  
 // ✅ Zapier One
 app.post('/trigger-zap', async (req, res) => {
   try {
