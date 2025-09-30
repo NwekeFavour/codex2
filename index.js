@@ -11,27 +11,26 @@ const zapierWebhookUrltwo = process.env.ZAPIER_WEBHOOK_URLTWO;
    
 app.use(express.json());
 
-const allowedOrigins = [
-  'http://localhost:3000',
-  'https://codex.ng',
-  'https://www.codex.ng'
-];
-
-connectDB();  
-
-app.use(cors({
+const corsOptions = {
   origin: function (origin, callback) {
+    // allow requests with no origin (like Postman or server-to-server)
     if (!origin) return callback(null, true);
     if (allowedOrigins.includes(origin)) {
       return callback(null, true);
-    } else {
-      return callback(new Error('Not allowed by CORS'));
     }
+    callback(new Error('Not allowed by CORS'));
   },
-  methods: ['GET', 'POST'],
+  methods: ['GET', 'POST', 'OPTIONS'],
   allowedHeaders: ['Content-Type', 'Authorization'],
-  credentials: true
-}));
+  credentials: true, // allow cookies/auth headers
+  preflightContinue: false, // important
+  optionsSuccessStatus: 204, // for legacy browsers
+}
+
+app.use(cors(corsOptions));
+
+connectDB();  
+
 
 // ✅ Auth Routes
 app.use("/api/auth", require("./routes/authRoutes"));
