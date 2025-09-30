@@ -11,6 +11,13 @@ const zapierWebhookUrltwo = process.env.ZAPIER_WEBHOOK_URLTWO;
    
 app.use(express.json());
 
+
+const allowedOrigins = [
+  'http://localhost:3000',
+  'https://codex.ng',
+  'https://www.codex.ng'
+];
+
 const corsOptions = {
   origin: function (origin, callback) {
     // allow requests with no origin (like Postman or server-to-server)
