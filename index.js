@@ -91,7 +91,7 @@ app.post("/api/contact", async (req, res) => {
       to: email,
       from: {
         email: process.env.BRANDED_EMAIL, // inbox@codex.ng (verified)
-        name: "Codex Team",
+        name: "Codex technologies Solutions",
       },
       subject: "Thank you for contacting Codex 🚀",
       html: `
@@ -198,7 +198,7 @@ app.post("/api/quick-contact", async (req, res) => {
       to: email,
       from: {
         email: process.env.BRANDED_EMAIL,
-        name: "Codex Team",
+        name: "Codex technologies Solutions",
       },
       subject: "Thank you for contacting Codex 🚀",
       html: `
