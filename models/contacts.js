@@ -9,8 +9,8 @@ const ContactSchema = new mongoose.Schema(
     company: { type: String },  
     service: { type: String, required: true },
     timeline: { type: String },
-    message: { type: String, required: true },
-    consent: { type: Boolean, required: true },
+    message: { type: String },
+    consent: { type: Boolean},
     newsletter: { type: Boolean, default: false },
   },
   { timestamps: true }
