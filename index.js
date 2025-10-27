@@ -11,7 +11,7 @@ const zapierWebhookUrltwo = process.env.ZAPIER_WEBHOOK_URLTWO;
    
 app.use(express.json());
 
-
+  
 const allowedOrigins = [
   'http://localhost:3000',
   'https://codex.ng',
@@ -90,7 +90,7 @@ app.post("/api/contact", async (req, res) => {
     const visitorMsg = {
       to: email,
       from: {
-        email: process.env.BRANDED_EMAIL, // inbox@codex.ng (verified)
+        email: process.env.BRANDED_EMAIL,
         name: "Codex technologies Solutions",
       },
       subject: "Thank you for contacting Codex 🚀",
