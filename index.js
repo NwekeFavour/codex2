@@ -147,6 +147,16 @@ app.get("/api/contacts", async (req, res) => {
   }
 });
 
+app.delete("/api/contacts/:id", async (req,res) => {
+  try {
+    const contacts = await Contact.findByIdAndDelete(req.params.id);
+    if (!contacts) return res.status(404).json({ message: "Post not found" });
+  }
+  catch (err) {
+    res.status(500).json({ message: "Error deleting post", error: err.message });
+  }
+})
+
 // ✅ Quick Contact
 app.post("/api/quick-contact", async (req, res) => {
   try {
