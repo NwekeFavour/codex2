@@ -27,7 +27,7 @@ const corsOptions = {
     }
     callback(new Error('Not allowed by CORS'));
   },
-  methods: ['GET', 'POST', 'OPTIONS'],
+  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
   allowedHeaders: ['Content-Type', 'Authorization'],
   credentials: true, // allow cookies/auth headers
   preflightContinue: false, // important
@@ -150,7 +150,8 @@ app.get("/api/contacts", async (req, res) => {
 app.delete("/api/contacts/:id", async (req,res) => {
   try {
     const contacts = await Contact.findByIdAndDelete(req.params.id);
-    if (!contacts) return res.status(404).json({ message: "Post not found" });
+    if (!contacts) return res.status(404).json({ message: "Contact not found" });
+    res.status(200).json({ message: "Contact deleted successfully" });
   }
   catch (err) {
     res.status(500).json({ message: "Error deleting post", error: err.message });
