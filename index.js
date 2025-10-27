@@ -100,7 +100,7 @@ app.post("/api/contact", async (req, res) => {
           <h2 style="color: #1f2937; font-size: 24px; margin: 0;">Thank You for Contacting Us, ${fname}!</h2>
           <p style="color: #6b7280; font-size: 14px; margin: 5px 0 0;">We’ve received your message and our team will get back to you shortly.</p>
         </header>
-
+    
         <section style="background: #ffffff; padding: 15px 20px; border-radius: 6px; border: 1px solid #e5e7eb; line-height: 1.6;">
           <p>Here’s a quick overview of the services we offer:</p>
           <ul style="padding-left: 20px; margin: 10px 0;">
