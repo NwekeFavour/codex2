@@ -58,7 +58,7 @@ app.post("/api/contact", async (req, res) => {
 
     // ===== 1. Send to Codex inbox =====
     const businessMsg = {
-      to: "contacts@codex.ng",
+      to: "contact@codex.ng",
       from: {
         email: process.env.BRANDED_EMAIL,
         name: `${fname} ${lname}`,
@@ -163,7 +163,7 @@ app.post("/api/quick-contact", async (req, res) => {
 
     // ===== 1. Send to Codex inbox =====
     const businessMsg = {
-      to: "contacts@codex.ng",
+      to: "contact@codex.ng",
       from: {
         email: process.env.BRANDED_EMAIL, // must be verified in SendGrid
         name: `${fname} ${lname}`,
